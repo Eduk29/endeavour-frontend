@@ -1,0 +1,11 @@
+<mat-toolbar [color]="color" class="d-flex flex-row align-items-center justify-content-between">
+  <div class="d-flex flex-row">
+    <button *ngIf="!!displaySideMenuButton" mat-icon-button [attr.aria-label]="ariaLabelSideMenu">
+      <mat-icon>{{ sidemenuIcon }}</mat-icon>
+    </button>
+    <section *ngIf="displayApplicationName && !!applicationName">
+      <p class="mat-headline-3 m-0" [attr.aria-label]="ariaLabelApplicationName">{{ applicationName }}</p>
+    </section>
+  </div>
+  <edv-avatar *ngIf="!!avatarParameters" [avatarParameters]="avatarParameters"></edv-avatar>
+</mat-toolbar>

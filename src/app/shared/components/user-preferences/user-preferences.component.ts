@@ -2,6 +2,7 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 
 import { UserPreferencesParameters } from './model/user-preferences-parameters.model';
 import { AvatarParameters } from '../avatar/model/avatar-parameters.model';
+import { MenuActionButton } from '../../model/menu-action-button.model';
 
 @Component({
   selector: 'edv-user-preferences',
@@ -41,6 +42,13 @@ export class UserPreferencesComponent implements OnChanges {
 
   public get fullname(): string | undefined {
     return this.userPreferencesParameters.fullname;
+  }
+
+  public get menuHasDisplayableButton(): boolean {
+    const displayableButton =
+      this.userPreferencesParameters.actionButtons?.filter((button: MenuActionButton) => button.displayButton === true) || [];
+
+    return displayableButton.length > 0;
   }
 
   public get username(): string | undefined {

@@ -9,8 +9,15 @@ export const homeNavbarConfiguration: NavbarParameters = {
   color: 'primary',
   userPreferencesParameters: {
     actionButtons: [
-      { color: undefined, label: 'Profile', iconName: 'account_circle', type: 'router', routerLink: ['..', 'profile'] },
-      { color: undefined, label: 'Log Out', iconName: 'logout', type: 'logout' },
+      {
+        color: undefined,
+        displayButton: false,
+        label: 'Profile',
+        iconName: 'account_circle',
+        routerLink: ['..', 'profile'],
+        type: 'router',
+      },
+      { color: undefined, displayButton: true, label: 'Log Out', iconName: 'logout', type: 'logout' },
     ],
     avatarParameters: {
       displayerMode: 'text',

@@ -11,11 +11,11 @@
   <div *ngIf="menuButtons && menuButtons.length > 0">
     <hr />
     <div *ngFor="let button of menuButtons">
-      <button *ngIf="!isCustomType(button)" mat-menu-item [routerLink]="button.routerLink">
+      <button *ngIf="!isCustomType(button) && button.displayButton" mat-menu-item [routerLink]="button.routerLink">
         <mat-icon>{{ button.iconName }}</mat-icon>
         <span>{{ button.label }}</span>
       </button>
-      <button *ngIf="!!isCustomType(button)" (click)="clickAction(button)" mat-menu-item>
+      <button *ngIf="!!isCustomType(button) && button.displayButton" (click)="clickAction(button)" mat-menu-item>
         <mat-icon>{{ button.iconName }}</mat-icon>
         <span>{{ button.label }}</span>
       </button>

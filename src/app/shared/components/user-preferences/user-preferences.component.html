@@ -1,0 +1,14 @@
+<section class="d-flex flex-row align-items-center px-5" *ngIf="!!displayUserpreferences">
+  <div *ngIf="!!fullname" class="d-flex flex-column px-3">
+    <p class="m-0">Olá,</p>
+    <p class="m-0">{{ fullname }}</p>
+  </div>
+  <edv-avatar *ngIf="!!avatarParameters" [avatarParameters]="avatarParameters"></edv-avatar>
+  <button *ngIf="displayActionMenu" [matMenuTriggerFor]="userActionMenu" mat-icon-button>
+    <mat-icon>expand_more</mat-icon>
+  </button>
+</section>
+
+<mat-menu class="mt-4" #userActionMenu="matMenu">
+  <edv-user-preferences-menu [userPreferencesParameters]="userPreferencesParameters"> </edv-user-preferences-menu>
+</mat-menu>

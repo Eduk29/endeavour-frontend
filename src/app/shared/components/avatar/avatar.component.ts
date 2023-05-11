@@ -18,6 +18,10 @@ export class AvatarComponent {
     return this.avatarParameters.iconName || 'menu';
   }
 
+  public set label(newLabel: string | undefined) {
+    this.avatarParameters.label = newLabel;
+  }
+
   public get label(): string | undefined {
     return this.avatarParameters.label;
   }

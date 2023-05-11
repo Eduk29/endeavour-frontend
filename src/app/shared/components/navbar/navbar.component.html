@@ -1,4 +1,4 @@
-<mat-toolbar [color]="color" class="d-flex flex-row align-items-center justify-content-between">
+<mat-toolbar [color]="color" class="d-flex flex-row align-items-center justify-content-between py-5">
   <div class="d-flex flex-row">
     <button *ngIf="!!displaySideMenuButton" mat-icon-button [attr.aria-label]="ariaLabelSideMenu">
       <mat-icon>{{ sidemenuIcon }}</mat-icon>
@@ -7,5 +7,7 @@
       <p class="mat-headline-3 m-0" [attr.aria-label]="ariaLabelApplicationName">{{ applicationName }}</p>
     </section>
   </div>
-  <edv-avatar *ngIf="!!avatarParameters" [avatarParameters]="avatarParameters"></edv-avatar>
+  <div *ngIf="!!userPreferencesParameters">
+    <edv-user-preferences [userPreferencesParameters]="userPreferencesParameters"></edv-user-preferences>
+  </div>
 </mat-toolbar>

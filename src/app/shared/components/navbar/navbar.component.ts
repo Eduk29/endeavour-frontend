@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
+import { UserPreferencesParameters } from '../user-preferences/model/user-preferences-parameters.model';
 import { NavbarParameters } from './model/navbar-parameters.models';
-import { AvatarParameters } from '../avatar/model/avatar-parameters.model';
 
 @Component({
   selector: 'edv-navbar',
@@ -23,8 +23,8 @@ export class NavbarComponent {
     return this.navbarParameters?.sideMenuParameters?.ariaLabel;
   }
 
-  public get avatarParameters(): AvatarParameters | undefined {
-    return this.navbarParameters?.avatarParameters;
+  public get userPreferencesParameters(): UserPreferencesParameters | undefined {
+    return this.navbarParameters?.userPreferencesParameters;
   }
 
   public get color(): string {

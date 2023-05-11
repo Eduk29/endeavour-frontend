@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 
 import { NavbarParameters } from '../shared/components/navbar/model/navbar-parameters.models';
+import { homeNavbarConfiguration } from './configurations/home-navbar.configuration';
+import { MenuActionButton } from '../shared/model/menu-action-button.model';
 
 @Component({
   selector: 'edv-home',
@@ -8,17 +10,21 @@ import { NavbarParameters } from '../shared/components/navbar/model/navbar-param
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
-  public homeNavbarParameters: NavbarParameters = {
-    applicationNameParameters: {
-      applicationName: 'Endeavour',
-      ariaLabel: 'Endeavour Application',
-      displayApplicationName: true,
-    },
-    avatarParameters: {
-      displayerMode: 'icon',
-      label: 'EM',
-      iconName: 'person',
-    },
-    color: 'primary',
-  };
+  public homeNavbarParameters: NavbarParameters = homeNavbarConfiguration;
+
+  constructor() {
+    this.actionButtons?.map((button: MenuActionButton) => {
+      if (button.type === 'logout') {
+        button.action = this.logout;
+      }
+    });
+  }
+
+  public get actionButtons(): MenuActionButton[] | undefined {
+    return this.homeNavbarParameters.userPreferencesParameters?.actionButtons || undefined;
+  }
+
+  private logout(): void | undefined {
+    console.log('Logout via Component');
+  }
 }

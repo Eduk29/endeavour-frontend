@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { UserPreferencesParameters } from '../model/user-preferences-parameters.model';
-import { MenuActionButton } from 'src/app/shared/model/menu-action-button.model';
+import { IUserPreferencesParameters } from '../model/user-preferences-parameters.model';
+import { IMenuActionButton } from 'src/app/shared/model/menu-action-button.model';
 
 @Component({
   selector: 'edv-user-preferences-menu',
@@ -8,16 +8,16 @@ import { MenuActionButton } from 'src/app/shared/model/menu-action-button.model'
   styleUrls: ['./user-preferences-menu.component.scss'],
 })
 export class UserPreferencesMenuComponent {
-  @Input() userPreferencesParameters!: UserPreferencesParameters;
+  @Input() userPreferencesParameters!: IUserPreferencesParameters;
 
-  public clickAction(button: MenuActionButton) {
+  public clickAction(button: IMenuActionButton) {
     if (button.action) {
       return button.action();
     }
     return;
   }
 
-  public isCustomType(button: MenuActionButton): boolean {
+  public isCustomType(button: IMenuActionButton): boolean {
     return button.type === 'custom';
   }
 
@@ -25,7 +25,7 @@ export class UserPreferencesMenuComponent {
     return this.userPreferencesParameters.fullname;
   }
 
-  public get menuButtons(): MenuActionButton[] {
+  public get menuButtons(): IMenuActionButton[] {
     return this.userPreferencesParameters.actionButtons || [];
   }
 

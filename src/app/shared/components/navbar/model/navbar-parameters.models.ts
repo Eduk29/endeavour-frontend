@@ -1,11 +1,10 @@
-import { AvatarParameters } from '../../avatar/model/avatar-parameters.model';
-import { UserPreferencesParameters } from '../../user-preferences/model/user-preferences-parameters.model';
-import { ApplicationNameParameters } from './application-name-parameters.model';
-import { SidemenuParameters } from './sidemenu-parameters.model';
+import { IUserPreferencesParameters } from '../../user-preferences/model/user-preferences-parameters.model';
+import { IApplicationNameParameters } from './application-name-parameters.model';
+import { ISidemenuParameters } from './sidemenu-parameters.model';
 
-export interface NavbarParameters {
-  applicationNameParameters?: ApplicationNameParameters;
+export interface INavbarParameters {
+  applicationNameParameters?: IApplicationNameParameters;
   color?: 'primary' | 'accent';
-  sideMenuParameters?: SidemenuParameters;
-  userPreferencesParameters?: UserPreferencesParameters;
+  sideMenuParameters?: ISidemenuParameters;
+  userPreferencesParameters?: IUserPreferencesParameters;
 }

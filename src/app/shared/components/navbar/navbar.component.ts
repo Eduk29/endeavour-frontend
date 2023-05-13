@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
-import { UserPreferencesParameters } from '../user-preferences/model/user-preferences-parameters.model';
-import { NavbarParameters } from './model/navbar-parameters.models';
+import { IUserPreferencesParameters } from '../user-preferences/model/user-preferences-parameters.model';
+import { INavbarParameters } from './model/navbar-parameters.models';
 
 @Component({
   selector: 'edv-navbar',
@@ -9,7 +9,7 @@ import { NavbarParameters } from './model/navbar-parameters.models';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent {
-  @Input() navbarParameters?: NavbarParameters;
+  @Input() navbarParameters?: INavbarParameters;
 
   public get applicationName(): string | undefined {
     return this.navbarParameters?.applicationNameParameters?.applicationName;
@@ -23,7 +23,7 @@ export class NavbarComponent {
     return this.navbarParameters?.sideMenuParameters?.ariaLabel;
   }
 
-  public get userPreferencesParameters(): UserPreferencesParameters | undefined {
+  public get userPreferencesParameters(): IUserPreferencesParameters | undefined {
     return this.navbarParameters?.userPreferencesParameters;
   }
 

@@ -1,4 +1,4 @@
-export interface MenuActionButton {
+export interface IMenuActionButton {
   action?: () => void;
   color?: 'primary' | 'accent';
   displayButton?: boolean | (() => boolean);

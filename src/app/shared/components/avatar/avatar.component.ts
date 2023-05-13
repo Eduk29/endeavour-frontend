@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { AvatarParameters } from './model/avatar-parameters.model';
+import { IAvatarParameters } from './model/avatar-parameters.model';
 
 @Component({
   selector: 'edv-avatar',
@@ -8,7 +8,7 @@ import { AvatarParameters } from './model/avatar-parameters.model';
   styleUrls: ['./avatar.component.scss'],
 })
 export class AvatarComponent {
-  @Input() avatarParameters!: AvatarParameters;
+  @Input() avatarParameters!: IAvatarParameters;
 
   public get displayMode(): string {
     return this.avatarParameters.displayerMode || 'text';

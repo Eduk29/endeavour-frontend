@@ -1,8 +1,8 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
-import { UserPreferencesParameters } from './model/user-preferences-parameters.model';
-import { AvatarParameters } from '../avatar/model/avatar-parameters.model';
-import { MenuActionButton } from '../../model/menu-action-button.model';
+import { IUserPreferencesParameters } from './model/user-preferences-parameters.model';
+import { IAvatarParameters } from '../avatar/model/avatar-parameters.model';
+import { IMenuActionButton } from '../../model/menu-action-button.model';
 
 @Component({
   selector: 'edv-user-preferences',
@@ -10,7 +10,7 @@ import { MenuActionButton } from '../../model/menu-action-button.model';
   styleUrls: ['./user-preferences.component.scss'],
 })
 export class UserPreferencesComponent implements OnChanges {
-  @Input() userPreferencesParameters!: UserPreferencesParameters;
+  @Input() userPreferencesParameters!: IUserPreferencesParameters;
 
   ngOnChanges(): void {
     if (!!this.avatarParameters && this.avatarParameters?.displayerMode === 'text' && this.avatarParameters.label === undefined) {
@@ -24,11 +24,11 @@ export class UserPreferencesComponent implements OnChanges {
     return `${firstLetter}${lastLetter}`;
   }
 
-  public get avatarParameters(): AvatarParameters | undefined {
+  public get avatarParameters(): IAvatarParameters | undefined {
     return this.userPreferencesParameters.avatarParameters;
   }
 
-  public set avatarParameters(newAvatarParameters: AvatarParameters | undefined) {
+  public set avatarParameters(newAvatarParameters: IAvatarParameters | undefined) {
     this.userPreferencesParameters.avatarParameters = newAvatarParameters;
   }
 
@@ -46,7 +46,7 @@ export class UserPreferencesComponent implements OnChanges {
 
   public get menuHasDisplayableButton(): boolean {
     const displayableButton =
-      this.userPreferencesParameters.actionButtons?.filter((button: MenuActionButton) => button.displayButton === true) || [];
+      this.userPreferencesParameters.actionButtons?.filter((button: IMenuActionButton) => button.displayButton === true) || [];
 
     return displayableButton.length > 0;
   }

@@ -1,6 +1,6 @@
-import { NavbarParameters } from '../../shared/components/navbar/model/navbar-parameters.models';
+import { INavbarParameters } from '../../shared/components/navbar/model/navbar-parameters.models';
 
-export const homeNavbarConfiguration: NavbarParameters = {
+export const homeNavbarConfiguration: INavbarParameters = {
   applicationNameParameters: {
     applicationName: 'Endeavour',
     ariaLabel: 'Endeavour Application',

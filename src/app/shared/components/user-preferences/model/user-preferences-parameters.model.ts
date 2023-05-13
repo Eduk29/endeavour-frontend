@@ -1,9 +1,9 @@
-import { MenuActionButton } from 'src/app/shared/model/menu-action-button.model';
-import { AvatarParameters } from '../../avatar/model/avatar-parameters.model';
+import { IMenuActionButton } from './../../../model/menu-action-button.model';
+import { IAvatarParameters } from './../../avatar/model/avatar-parameters.model';
 
-export interface UserPreferencesParameters {
-  actionButtons?: MenuActionButton[];
-  avatarParameters?: AvatarParameters;
+export interface IUserPreferencesParameters {
+  actionButtons?: IMenuActionButton[];
+  avatarParameters?: IAvatarParameters;
   displayActionMenu?: boolean;
   displayUserPreferences?: boolean;
   fullname?: string;

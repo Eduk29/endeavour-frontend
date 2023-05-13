@@ -1,5 +1,10 @@
 <edv-navbar [navbarParameters]="homeNavbarParameters"></edv-navbar>
 
-<main class="container">
-  <p>home works!</p>
+<main class="container mt-5">
+  <mat-card class="d-flex flex-row align-items-center pt-4 px-3 w-100">
+    <edv-search-input
+      [searchInputParameters]="homeSearchParameters"
+      (searchEventEmitter)="searchEvent($event)"
+      class="w-100"></edv-search-input>
+  </mat-card>
 </main>

@@ -1,0 +1,29 @@
+<form class="d-flex flex-row w-100" [formGroup]="searchInputForm" (ngSubmit)="searchEvent()">
+  <div *ngIf="!!displaySearchType" id="search-select-type" class="w-20 pe-2">
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-select placeholder="Search by..." formControlName="searchType" (selectionChange)="changeSelection($event)" required>
+        <mat-option *ngFor="let searchType of searchTypeList" [value]="searchType.key">
+          {{ searchType.value }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div *ngIf="!!displaySearchInput" id="search-input" class="w-70 px-2">
+    <mat-form-field appearance="outline" class="w-100">
+      <input matInput [type]="inputType" [placeholder]="inputPlaceholder" formControlName="searchParameter" required />
+    </mat-form-field>
+  </div>
+
+  <div id="search-button" class="my-2 ps-2 w-10">
+    <button
+      mat-raised-button
+      aria-label="Search button"
+      class="d-flex flex-row align-items-center justify-content-center w-100 h-60"
+      color="primary"
+      [disabled]="!searchInputForm.valid">
+      <mat-icon aria-hidden="false" fontIcon="search"></mat-icon>
+      <span class="mat-subtitle-2 fw-bold">Search</span>
+    </button>
+  </div>
+</form>

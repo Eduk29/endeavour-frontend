@@ -3,8 +3,4 @@ import { ISearchInputParameters } from './../../shared/components/search-input/m
 export const homeSearchConfiguration: ISearchInputParameters = {
   displaySearchInput: true,
   displaySearchType: true,
-  searchTypeList: [
-    { key: 'id', value: 'Id' },
-    { key: 'name', value: 'Name' },
-  ],
 };

@@ -1,0 +1,42 @@
+<mat-card class="p-3">
+  <mat-table *ngIf="displayTable; else noResults" [dataSource]="personList" class="mb-2 w-100">
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.id }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.name }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="age">
+      <mat-header-cell *matHeaderCellDef>Age</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.age }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="birthday">
+      <mat-header-cell *matHeaderCellDef>Birthday</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.birthday | date : 'dd/MM/YYYY' }}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+
+  <mat-paginator
+    aria-label="Select page of users"
+    class="mt-2"
+    [length]="length"
+    [pageIndex]="pageIndex"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="pageSizeOptions"
+    (page)="pagination($event)">
+  </mat-paginator>
+</mat-card>
+
+<ng-template #noResults>
+  <mat-card class="d-flex flex-row align-items-center justify-content-center py-4 w-100">
+    <p class="m-0 p-0">No results for this search!</p>
+  </mat-card>
+</ng-template>

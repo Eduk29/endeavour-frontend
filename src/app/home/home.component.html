@@ -1,10 +1,19 @@
 <edv-navbar [navbarParameters]="homeNavbarParameters"></edv-navbar>
 
 <main class="container mt-5">
-  <mat-card class="d-flex flex-row align-items-center pt-4 px-3 w-100">
+  <mat-card class="d-flex flex-row align-items-center pt-4 px-3 mb-4 w-100">
     <edv-search-input
       [searchInputParameters]="homeSearchParameters"
       (searchEventEmitter)="searchEvent($event)"
       class="w-100"></edv-search-input>
   </mat-card>
+
+  <div class="d-flex flex-row align-items-center mt-4 w-100">
+    <edv-person-table
+      class="w-100"
+      [paginationParameters]="paginationParameters"
+      [personList]="personList"
+      (paginationEvent)="paginationEvent($event)">
+    </edv-person-table>
+  </div>
 </main>

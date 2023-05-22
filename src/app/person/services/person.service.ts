@@ -1,6 +1,7 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
+import { ISearchFilter } from 'src/app/shared/components/search-input/model/search-filter.model';
 import { IPaginatedResponse } from 'src/app/shared/model/paginated-response.model';
 import { IPaginationParameters } from 'src/app/shared/model/pagination-parameters.model';
 import { environment } from 'src/environments/environment.development';
@@ -18,6 +19,21 @@ export class PersonService {
     const url = `${environment.mockedAPI.person.listAll}?_page=${(paginationParameters.pageIndex as number) + 1}&_limit=${
       paginationParameters.pageSize as number
     }`;
+
+    return this.http.get<IPerson[]>(url, { observe: 'response' }).pipe(
+      map((response: HttpResponse<IPerson[]>) => {
+        return ServicesUtils.convertToPaginatedResponse(response, paginationParameters);
+      })
+    );
+  }
+
+  public listByParameter(
+    searchParameters: ISearchFilter,
+    paginationParameters: IPaginationParameters
+  ): Observable<IPaginatedResponse<IPerson>> {
+    const url = `${environment.mockedAPI.person.listAll}?${searchParameters.searchType}=${searchParameters.searchParameter}&_page=${
+      (paginationParameters.pageIndex as number) + 1
+    }&_limit=${paginationParameters.pageSize as number}`;
 
     return this.http.get<IPerson[]>(url, { observe: 'response' }).pipe(
       map((response: HttpResponse<IPerson[]>) => {

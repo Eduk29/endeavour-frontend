@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   public searchEvent(searchFilter: ISearchFilter) {
-    console.log('Search: ', searchFilter);
+    this.listByParameters(searchFilter);
   }
 
   private configureLogoutAction(): void {
@@ -68,7 +68,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   private listAllPersons(): void {
-    console.log('Teste: ', this.paginationParameters);
     this.personService
       .listAll(this.paginationParameters)
       .pipe(
@@ -80,7 +79,8 @@ export class HomeComponent implements OnInit, OnDestroy {
             pageSize: response.pageSize,
             totalCount: response.totalElements,
           };
-        })
+        }),
+        takeUntil(this.onDestroy$)
       )
       .subscribe();
   }
@@ -90,6 +90,24 @@ export class HomeComponent implements OnInit, OnDestroy {
       .listAllSearchOptions()
       .pipe(
         tap((response: ISystemValue[]) => (this.homeSearchParameters.searchTypeList = response)),
+        takeUntil(this.onDestroy$)
+      )
+      .subscribe();
+  }
+
+  private listByParameters(searchParameters: ISearchFilter): void {
+    this.personService
+      .listByParameter(searchParameters, this.paginationParameters)
+      .pipe(
+        tap((response: IPaginatedResponse<IPerson>) => {
+          this.personList = response.content || [];
+          this.paginationParameters = {
+            ...this.paginationParameters,
+            pageIndex: response.pageNumber,
+            pageSize: response.pageSize,
+            totalCount: response.totalElements,
+          };
+        }),
         takeUntil(this.onDestroy$)
       )
       .subscribe();

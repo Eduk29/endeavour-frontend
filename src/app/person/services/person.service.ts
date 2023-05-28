@@ -1,12 +1,12 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { ISearchFilter } from 'src/app/shared/components/search-input/model/search-filter.model';
-import { IPaginatedResponse } from 'src/app/shared/model/paginated-response.model';
-import { IPaginationParameters } from 'src/app/shared/model/pagination-parameters.model';
-import { environment } from 'src/environments/environment.development';
 
 import { IPerson } from '../models/person.model';
+import { environment } from './../../../environments/environment.development';
+import { ISearchFilter } from './../../shared/components/search-input/model/search-filter.model';
+import { IPaginatedResponse } from './../../shared/model/paginated-response.model';
+import { IPaginationParameters } from './../../shared/model/pagination-parameters.model';
 import ServicesUtils from './../../shared/utils/services.utils';
 
 @Injectable({
@@ -16,9 +16,9 @@ export class PersonService {
   constructor(private http: HttpClient) {}
 
   public listAll(paginationParameters: IPaginationParameters): Observable<IPaginatedResponse<IPerson>> {
-    const url = `${environment.mockedAPI.person.listAll}?_page=${(paginationParameters.pageIndex as number) + 1}&_limit=${
-      paginationParameters.pageSize as number
-    }`;
+    const basePath = environment.mockedAPI.person.listAll;
+    const resquestParameters = ServicesUtils.constructRequestParameters(paginationParameters);
+    const url = `${basePath}?${resquestParameters}`;
 
     return this.http.get<IPerson[]>(url, { observe: 'response' }).pipe(
       map((response: HttpResponse<IPerson[]>) => {
@@ -31,9 +31,9 @@ export class PersonService {
     searchParameters: ISearchFilter,
     paginationParameters: IPaginationParameters
   ): Observable<IPaginatedResponse<IPerson>> {
-    const url = `${environment.mockedAPI.person.listAll}?${searchParameters.searchType}=${searchParameters.searchParameter}&_page=${
-      (paginationParameters.pageIndex as number) + 1
-    }&_limit=${paginationParameters.pageSize as number}`;
+    const basePath = environment.mockedAPI.person.listAll;
+    const resquestParameters = ServicesUtils.constructRequestParameters(paginationParameters, searchParameters);
+    const url = `${basePath}?${resquestParameters}`;
 
     return this.http.get<IPerson[]>(url, { observe: 'response' }).pipe(
       map((response: HttpResponse<IPerson[]>) => {

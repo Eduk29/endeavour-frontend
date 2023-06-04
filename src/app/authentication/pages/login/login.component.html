@@ -1,4 +1,7 @@
-<main class="d-flex flex-row align-items-center justify-content-center vh-100 w-100">
+<main class="d-flex flex-column align-items-center justify-content-center vh-100 w-100">
+  <section class="d-flex flex-column align-items-center brand accent base text">
+    <span class="app-title my-2">Endeavour</span>
+  </section>
   <mat-card class="pt-3 px-3 w-50">
     <form [formGroup]="authenticationForm" (ngSubmit)="login()">
       <mat-card-content class="d-flex flex-column">

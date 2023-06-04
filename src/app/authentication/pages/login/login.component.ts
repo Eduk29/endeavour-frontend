@@ -54,6 +54,7 @@ export class LoginComponent implements OnDestroy {
               message: 'Username/Password incorrect!',
             };
             this.displayFeedbackMessage(unauthorizedParameters);
+            this.resetForm();
           }
         },
       });
@@ -82,8 +83,9 @@ export class LoginComponent implements OnDestroy {
 
   private storeUserData(userData: IAuthenticationResponse): void {
     sessionStorage.setItem('accessToken', userData.accessToken);
-    sessionStorage.setItem('username', userData.username);
     sessionStorage.setItem('personId', userData.person.id.toLocaleString());
+    sessionStorage.setItem('personName', userData.person.name);
     sessionStorage.setItem('roles', JSON.stringify(userData.roles));
+    sessionStorage.setItem('username', userData.username);
   }
 }

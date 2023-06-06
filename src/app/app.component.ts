@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { Subject } from 'rxjs';
 
 import { APPLICATION_NAVBAR_PARAMETERS } from './app.configurations';
 import { IAvatarParameters } from './shared/components/avatar/model/avatar-parameters.model';
@@ -13,8 +13,6 @@ import { IMenuActionButton } from './shared/model/menu-action-button.model';
 })
 export class AppComponent implements OnInit {
   public navbarParameters: INavbarParameters = APPLICATION_NAVBAR_PARAMETERS;
-
-  constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.configureLogoutAction();
@@ -52,13 +50,7 @@ export class AppComponent implements OnInit {
     console.log('Logout via Component');
   }
 
-  public get loginRoute(): boolean {
-    let displayHeader = false;
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        displayHeader = event.url.includes('login');
-      }
-    });
-    return displayHeader;
+  public get isLoginRoute(): boolean {
+    return location.href.includes('login');
   }
 }

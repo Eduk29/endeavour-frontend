@@ -1,5 +1,5 @@
 export interface IAvatarParameters {
-  displayerMode: 'text' | 'icon';
+  displayerMode?: 'text' | 'icon';
   iconName?: string;
   label?: string;
 }

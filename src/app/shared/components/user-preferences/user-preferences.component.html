@@ -3,8 +3,8 @@
     <p class="m-0">Olá,</p>
     <p class="m-0">{{ fullname }}</p>
   </div>
-  <edv-avatar *ngIf="!!avatarParameters" [avatarParameters]="avatarParameters"></edv-avatar>
-  <button *ngIf="displayActionMenu && menuHasDisplayableButton" [matMenuTriggerFor]="userActionMenu" mat-icon-button>
+  <edv-avatar [avatarParameters]="avatarParameters"></edv-avatar>
+  <button *ngIf="displayActionMenu || menuHasDisplayableButton" [matMenuTriggerFor]="userActionMenu" mat-icon-button>
     <mat-icon>expand_more</mat-icon>
   </button>
 </section>

@@ -1,8 +1,8 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 
-import { IUserPreferencesParameters } from './model/user-preferences-parameters.model';
-import { IAvatarParameters } from '../avatar/model/avatar-parameters.model';
 import { IMenuActionButton } from '../../model/menu-action-button.model';
+import { IAvatarParameters } from '../avatar/model/avatar-parameters.model';
+import { IUserPreferencesParameters } from './model/user-preferences-parameters.model';
 
 @Component({
   selector: 'edv-user-preferences',
@@ -10,11 +10,12 @@ import { IMenuActionButton } from '../../model/menu-action-button.model';
   styleUrls: ['./user-preferences.component.scss'],
 })
 export class UserPreferencesComponent implements OnChanges {
-  @Input() userPreferencesParameters!: IUserPreferencesParameters;
+  @Input() userPreferencesParameters?: IUserPreferencesParameters;
 
   ngOnChanges(): void {
     if (!!this.avatarParameters && this.avatarParameters?.displayerMode === 'text' && this.avatarParameters.label === undefined) {
-      this.avatarParameters = { ...this.avatarParameters, label: this.convertFullnameToInitials() };
+      const avatarParamter: IAvatarParameters = { ...this.avatarParameters, label: this.convertFullnameToInitials() };
+      this.userPreferencesParameters = { ...this.userPreferencesParameters, avatarParameters: avatarParamter };
     }
   }
 
@@ -25,33 +26,33 @@ export class UserPreferencesComponent implements OnChanges {
   }
 
   public get avatarParameters(): IAvatarParameters | undefined {
-    return this.userPreferencesParameters.avatarParameters;
+    return this.userPreferencesParameters?.avatarParameters;
   }
 
   public set avatarParameters(newAvatarParameters: IAvatarParameters | undefined) {
-    this.userPreferencesParameters.avatarParameters = newAvatarParameters;
+    this.userPreferencesParameters = { avatarParameters: newAvatarParameters };
   }
 
   public get displayActionMenu(): boolean {
-    return this.userPreferencesParameters.displayActionMenu || false;
+    return this.userPreferencesParameters?.displayActionMenu || false;
   }
 
   public get displayUserpreferences(): boolean {
-    return this.userPreferencesParameters.displayUserPreferences || false;
+    return this.userPreferencesParameters?.displayUserPreferences || false;
   }
 
   public get fullname(): string | undefined {
-    return this.userPreferencesParameters.fullname;
+    return this.userPreferencesParameters?.fullname;
   }
 
   public get menuHasDisplayableButton(): boolean {
     const displayableButton =
-      this.userPreferencesParameters.actionButtons?.filter((button: IMenuActionButton) => button.displayButton === true) || [];
+      this.userPreferencesParameters?.actionButtons?.filter((button: IMenuActionButton) => button.displayButton === true) || [];
 
     return displayableButton.length > 0;
   }
 
   public get username(): string | undefined {
-    return this.userPreferencesParameters.username;
+    return this.userPreferencesParameters?.username;
   }
 }

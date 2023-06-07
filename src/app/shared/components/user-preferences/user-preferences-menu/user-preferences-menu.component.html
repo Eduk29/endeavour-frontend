@@ -8,17 +8,19 @@
       <p *ngIf="!!username" class="mat-subtitle-1 m-0">{{ username }}</p>
     </div>
   </div>
-  <div *ngIf="menuButtons && menuButtons.length > 0">
-    <hr />
-    <div *ngFor="let button of menuButtons">
-      <button *ngIf="!isCustomType(button) && button.displayButton" mat-menu-item [routerLink]="button.routerLink">
-        <mat-icon>{{ button.iconName }}</mat-icon>
-        <span>{{ button.label }}</span>
-      </button>
-      <button *ngIf="!!isCustomType(button) && button.displayButton" (click)="clickAction(button)" mat-menu-item>
-        <mat-icon>{{ button.iconName }}</mat-icon>
-        <span>{{ button.label }}</span>
-      </button>
-    </div>
+  <hr />
+  <div *ngFor="let button of menuButtons">
+    <button *ngIf="!isCustomType(button) && button.displayButton" mat-menu-item [routerLink]="button.routerLink">
+      <mat-icon>{{ button.iconName }}</mat-icon>
+      <span>{{ button.label }}</span>
+    </button>
+    <button *ngIf="!!isCustomType(button) && button.displayButton" (click)="clickAction(button)" mat-menu-item>
+      <mat-icon>{{ button.iconName }}</mat-icon>
+      <span>{{ button.label }}</span>
+    </button>
   </div>
+  <button (click)="logoutAction()" mat-menu-item>
+    <mat-icon>logout</mat-icon>
+    <span>Logout</span>
+  </button>
 </div>

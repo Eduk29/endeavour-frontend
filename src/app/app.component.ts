@@ -38,8 +38,6 @@ export class AppComponent implements OnInit {
       const avatarParameters: IAvatarParameters = {
         displayerMode: 'text',
       };
-
-      this.navbarParameters.userPreferencesParameters.displayUserPreferences = true;
       this.navbarParameters.userPreferencesParameters.avatarParameters = avatarParameters;
       this.navbarParameters.userPreferencesParameters.fullname = sessionStorage.getItem('personName') as string;
       this.navbarParameters.userPreferencesParameters.username = sessionStorage.getItem('username') as string;

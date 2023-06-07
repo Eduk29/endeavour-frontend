@@ -33,14 +33,6 @@ export class UserPreferencesComponent implements OnChanges {
     this.userPreferencesParameters = { avatarParameters: newAvatarParameters };
   }
 
-  public get displayActionMenu(): boolean {
-    return this.userPreferencesParameters?.displayActionMenu || false;
-  }
-
-  public get displayUserpreferences(): boolean {
-    return this.userPreferencesParameters?.displayUserPreferences || false;
-  }
-
   public get fullname(): string | undefined {
     return this.userPreferencesParameters?.fullname;
   }
